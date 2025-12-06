@@ -6,6 +6,12 @@ alertmanager:
     size: 1Gi
 
 server:
+  global:
+    scrape_interval: 15s
+    evaluation_interval: 15s
+
+  retention: 3d
+
   persistentVolume:
     enabled: true
     storageClass: local-path
