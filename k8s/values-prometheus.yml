@@ -1,0 +1,36 @@
+alertmanager:
+  enabled: false
+  persistentVolume:
+    enabled: false
+    storageClass: local-path
+    size: 1Gi
+
+server:
+  persistentVolume:
+    enabled: true
+    storageClass: local-path
+    size: 2Gi
+
+  service:
+    type: NodePort
+    nodePort: 30900
+
+extraScrapeConfigs: |
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets:
+        - '192.168.0.189:9100'
+
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets:
+        - '192.168.0.189:8080'
+
+kube-state-metrics:
+  enabled: true
+
+prometheus-node-exporter:
+  enabled: true
+
+prometheus-pushgateway:
+  enabled: false

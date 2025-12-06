@@ -1,0 +1,21 @@
+image:
+  pullPolicy: IfNotPresent
+
+persistence:
+  enabled: true
+  storageClass: local-path
+  size: 2Gi
+  accessMode: ReadWriteOnce
+
+adminUser:
+  # These will be used to bootstrap InfluxDB 2
+  organization: 'lab-org'
+  bucket: 'lab-bucket'
+  user: 'admin'
+  password: 'Admin123456!'
+  token: 'AdminToken_123456_ChangeMe!'
+
+service:
+  type: NodePort
+  port: 80 # internal service port
+  nodePort: 32086 # expose Influx UI/API: http://NODE_IP:32086
