@@ -8,15 +8,15 @@ helm repo update
 # install
 helm upgrade --install grafana grafana/grafana \
   -n monitoring \
-  -f ./k8s/values-grafana.yml
+  -f ./k8s/helm/values-grafana.yml
 
 helm upgrade --install prometheus prometheus-community/prometheus \
   -n monitoring \
-  -f ./k8s/values-prometheus.yml
+  -f ./k8s/helm/values-prometheus.yml
 
 helm upgrade --install influxdb2 influxdata/influxdb2 \
   -n monitoring \
-  -f ./k8s/values-influxdb2.yml
+  -f ./k8s/helm/values-influxdb2.yml
 
 
 # with update -> remove --install
